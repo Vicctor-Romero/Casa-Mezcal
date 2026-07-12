@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+/* Paleta y fuentes de Casa Mezcal expuestas como utilidades de Tailwind:
+   bg-cream, text-brown-dark, font-display, etc. */
+@theme {
+  --color-cream: #f7efdf;
+  --color-cream-2: #fffbf2;
+  --color-border-warm: #eadcc2;
+  --color-brown: #6b4226;
+  --color-brown-dark: #4a2e17;
+  --color-tan: #a0703f;
+  --color-terracotta: #d4622a;
+  --color-terracotta-dark: #b4562b;
+  --color-amber: #e0932f;
+  --color-muted: #8a6b4a; /* texto secundario */
+  --color-sand: #f3e2c8; /* fondo de píldoras/tabs */
+  --color-cream-3: #fff6e8; /* texto sobre terracota */
+
+  --font-display: "Bitter", serif;
+  --font-body: "Karla", sans-serif;
+
+  /* Un solo breakpoint de escritorio (mobile-first): md: aplica a partir de 900px */
+  --breakpoint-md: 900px;
+}
+
+/* Estilos globales que aplican a todo el sitio */
+@layer base {
+  a {
+    color: var(--color-terracotta-dark);
+    text-decoration: none;
+  }
+  a:hover {
+    color: #8a3e1d;
+  }
+  h1,
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 900;
+  }
+}
