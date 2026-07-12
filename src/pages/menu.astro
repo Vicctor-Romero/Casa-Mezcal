@@ -1,0 +1,86 @@
+---
+import Base from '../layouts/Base.astro';
+import { menu } from '../data/menu';
+import { PHONE, PHONE_LABEL } from '../data/site';
+import MenuItem from '../components/MenuItem.astro';
+import Button from '../components/Button.astro';
+import LangToggle from '../components/LangToggle.astro';
+---
+
+<Base
+  title="Menu — Casa Mezcal · Alpine, WY"
+  description="Full menu at Casa Mezcal, family Mexican restaurant in Alpine, Wyoming. Lunch, dinner and beverages."
+>
+  <header
+    class="sticky top-0 z-10 flex items-center justify-between gap-4 bg-cream border-b border-border-warm px-[18px] py-3.5 md:px-10"
+  >
+    <a href="/" class="flex items-center gap-2.5">
+      <img src="/logo.jpg" alt="Casa Mezcal" class="w-10 h-10 rounded-full object-cover" />
+      <span class="font-display font-black text-[15px] tracking-[0.5px] text-brown-dark">CASA MEZCAL</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <LangToggle />
+      <a href="/" class="font-bold text-sm text-brown" data-es="← Inicio">← Home</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[1100px] px-5 pt-6 pb-12 md:px-14 md:pt-8 md:pb-16">
+    <h1 class="mb-4 text-[30px] text-brown" data-es="Menú">Menu</h1>
+
+    <div class="tabs flex flex-wrap gap-2 mb-6 sticky top-[68px] z-[9] bg-cream py-2" role="tablist">
+      {menu.map((group, i) => (
+        <button
+          class:list={[
+            'tab font-body font-bold text-[13px] px-4 py-2.5 rounded-full cursor-pointer border-none',
+            i === 0 ? 'bg-terracotta text-cream-3' : 'bg-sand text-brown',
+          ]}
+          data-cat={group.id}
+          data-es={group.name.es}
+          role="tab"
+        >
+          {group.name.en}
+        </button>
+      ))}
+    </div>
+
+    {menu.map((group, i) => (
+      <div class="group-panel" data-panel={group.id} hidden={i !== 0}>
+        {group.sections.map((sec) => (
+          <section class="mb-8">
+            <h2 class="mb-1 text-[22px] text-brown" data-es={sec.name.es}>{sec.name.en}</h2>
+            {sec.note && <p class="mb-3 text-[13px] text-muted" data-es={sec.note.es}>{sec.note.en}</p>}
+            <div class="grid gap-1.5 md:grid-cols-2 md:gap-3.5">
+              {sec.items.map((it) => (
+                <MenuItem name={it.name} price={it.price} priceLabel={it.priceLabel} desc={it.desc} />
+              ))}
+            </div>
+          </section>
+        ))}
+      </div>
+    ))}
+
+    <Button href={`tel:${PHONE}`} variant="dark" block class="mt-2" data-es={`Llama para ordenar • ${PHONE_LABEL}`}>
+      Call to order pickup • {PHONE_LABEL}
+    </Button>
+  </main>
+
+  <script>
+    // Tabs de grupo (Lunch/Dinner/Beverages): alterna clases de Tailwind y el panel visible.
+    const tabs = document.querySelectorAll<HTMLElement>('.tab');
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle('bg-terracotta', on);
+          t.classList.toggle('text-cream-3', on);
+          t.classList.toggle('bg-sand', !on);
+          t.classList.toggle('text-brown', !on);
+        });
+        document.querySelectorAll<HTMLElement>('.group-panel').forEach((p) => {
+          p.hidden = p.dataset.panel !== tab.dataset.cat;
+        });
+        window.scrollTo({ top: 0 });
+      });
+    });
+  </script>
+</Base>
