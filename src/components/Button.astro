@@ -1,0 +1,31 @@
+---
+// Botón/enlace reutilizable. Renderiza <a> si recibe href, si no <button>.
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'dark' | 'ghost' | 'ghost-light';
+  block?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const { href, variant = 'primary', block = false, class: extra = '', ...rest } = Astro.props;
+
+const variants = {
+  primary: 'bg-terracotta text-cream-3 hover:bg-terracotta-dark hover:text-cream-3',
+  dark: 'bg-brown text-cream hover:bg-brown-dark hover:text-cream',
+  ghost: 'border-[1.5px] border-brown text-brown hover:text-brown',
+  'ghost-light':
+    'border-[1.5px] border-[#fbf4e6]/55 bg-[#fbf4e6]/12 text-[#fbf4e6] hover:bg-[#fbf4e6]/22 hover:text-[#fbf4e6]',
+};
+
+const cls = [
+  'font-body font-bold text-sm px-5 py-3 rounded-[10px] cursor-pointer transition-colors',
+  block ? 'block text-center' : 'inline-block',
+  variants[variant],
+  extra,
+].join(' ');
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag href={href} class={cls} {...rest}><slot /></Tag>

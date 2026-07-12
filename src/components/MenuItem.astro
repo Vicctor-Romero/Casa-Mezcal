@@ -1,0 +1,16 @@
+---
+// Una tarjeta de platillo. La usan los destacados del landing y la página /menu.
+import type { MenuItem } from '../data/menu';
+
+type Props = MenuItem;
+const { name, price, priceLabel, desc } = Astro.props;
+const priceText = priceLabel ?? (price != null ? `$${price.toFixed(2)}` : '');
+---
+
+<div class="bg-cream-2 border border-border-warm rounded-xl px-4 py-[13px]">
+  <div class="flex items-baseline justify-between gap-3">
+    <span class="font-bold text-[14.5px]">{name}</span>
+    <span class="font-display font-black text-[14.5px] text-terracotta-dark whitespace-nowrap">{priceText}</span>
+  </div>
+  {desc && <div class="text-[12.5px] text-muted mt-[3px] leading-[1.45]" data-es={desc.es}>{desc.en}</div>}
+</div>

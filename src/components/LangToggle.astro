@@ -1,0 +1,25 @@
+---
+// Botón EN/ES + script. Intercambia el texto de todo elemento con [data-es].
+// Se incluye una vez por página (dentro del header).
+---
+
+<button
+  id="lang-toggle"
+  class="border-[1.5px] border-brown bg-transparent text-brown font-body font-bold text-xs px-3 py-1.5 rounded-full cursor-pointer"
+>
+  ES · Español
+</button>
+
+<script>
+  const btn = document.getElementById('lang-toggle');
+  let lang = 'en';
+  btn?.addEventListener('click', () => {
+    lang = lang === 'en' ? 'es' : 'en';
+    document.documentElement.lang = lang;
+    btn.textContent = lang === 'en' ? 'ES · Español' : 'EN · English';
+    document.querySelectorAll<HTMLElement>('[data-es]').forEach((el) => {
+      if (!el.dataset.en) el.dataset.en = el.textContent?.trim() ?? '';
+      el.textContent = lang === 'es' ? el.dataset.es! : el.dataset.en!;
+    });
+  });
+</script>

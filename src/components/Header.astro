@@ -1,0 +1,39 @@
+---
+import { PHONE } from '../data/site';
+import Button from './Button.astro';
+import LangToggle from './LangToggle.astro';
+
+const nav = [
+  { href: '#menu', en: 'Our menu', es: 'Nuestro menú' },
+  { href: '#why', en: 'Why us', es: 'Por qué' },
+  { href: '#gallery', en: 'Gallery', es: 'Galería' },
+  { href: '#visit', en: 'Visit us', es: 'Visítanos' },
+];
+---
+
+<header
+  class="sticky top-0 z-10 flex items-center justify-between gap-4 bg-cream border-b border-border-warm px-[18px] py-3.5 md:px-10 md:py-4"
+>
+  <a href="/" class="flex items-center gap-2.5">
+    <img src="/logo.jpg" alt="Casa Mezcal" class="w-11 h-11 rounded-full object-cover" />
+    <div>
+      <div class="font-display font-black text-[15px] tracking-[0.5px] text-brown-dark">CASA MEZCAL</div>
+      <div class="text-[10px] tracking-[1.5px] uppercase text-tan" data-es="Restaurante Mexicano Familiar">
+        Family Mexican Restaurant
+      </div>
+    </div>
+  </a>
+
+  <nav class="hidden md:flex gap-7">
+    {nav.map((n) => (
+      <a href={n.href} class="font-bold text-sm text-brown" data-es={n.es}>{n.en}</a>
+    ))}
+  </nav>
+
+  <div class="flex items-center gap-3">
+    <LangToggle />
+    <span class="hidden md:inline-block">
+      <Button href={`tel:${PHONE}`} data-es="Llámanos">Call us</Button>
+    </span>
+  </div>
+</header>

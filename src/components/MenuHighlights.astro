@@ -1,0 +1,24 @@
+---
+import { highlights } from '../data/menu';
+import { PHONE, PHONE_LABEL } from '../data/site';
+import MenuItem from './MenuItem.astro';
+import Button from './Button.astro';
+---
+
+<section id="menu" class="mx-auto max-w-[1100px] px-5 py-[26px] md:px-14 md:py-12">
+  <h2 class="mb-3.5 text-[22px] text-brown md:text-[30px]" data-es="Favoritos de la casa">House favorites</h2>
+  <p class="-mt-2 mb-3.5 text-[13px] text-muted" data-es="Una probadita — mira el menú completo o llama para ordenar y recoger.">
+    A taste of the menu — see the full menu or call to order for pickup.
+  </p>
+  <div class="grid gap-1.5 md:grid-cols-2 md:gap-3.5">
+    {highlights.map((it) => (
+      <MenuItem name={it.name} price={it.price} priceLabel={it.priceLabel} desc={it.desc} />
+    ))}
+  </div>
+  <div class="flex flex-wrap gap-2.5 mt-4">
+    <Button href="/menu" data-es="Ver menú completo">See full menu</Button>
+    <Button href={`tel:${PHONE}`} variant="dark" data-es={`Llama para ordenar • ${PHONE_LABEL}`}>
+      Call to order pickup • {PHONE_LABEL}
+    </Button>
+  </div>
+</section>
