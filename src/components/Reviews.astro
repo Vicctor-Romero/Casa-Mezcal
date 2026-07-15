@@ -1,13 +1,7 @@
 ---
 import { REVIEW_URL } from '../data/site';
+import { reviews } from '../data/reviews';
 import Button from './Button.astro';
-
-// Placeholder: reemplazar por reseñas reales del perfil de Google.
-const reviews = [
-  { text: { en: 'Finally, real Mexican food in Alpine! The birria tacos are unreal.', es: '¡Por fin comida mexicana de verdad en Alpine! Los tacos de birria son increíbles.' }, name: 'Sarah M. · Alpine, WY' },
-  { text: { en: 'Beautiful place, super friendly family, and everything tastes homemade.', es: 'Un lugar precioso, una familia súper amable y todo sabe hecho en casa.' }, name: 'Jake T. · Etna, WY' },
-  { text: { en: 'We drive up from Thayne just for the molcajete. Worth every mile.', es: 'Venimos desde Thayne solo por el molcajete. Vale cada milla.' }, name: 'Rosa G. · Thayne, WY' },
-];
 ---
 
 <section class="mx-auto max-w-[1100px] px-5 py-[26px] md:px-14 md:py-12">
@@ -15,7 +9,9 @@ const reviews = [
   <div class="grid gap-2.5 md:grid-cols-3">
     {reviews.map((r) => (
       <div class="bg-cream-2 border border-border-warm rounded-[14px] p-4">
-        <div class="text-amber text-sm tracking-[2px] mb-1.5">★★★★★</div>
+        <div class="text-amber text-sm tracking-[2px] mb-1.5" aria-label={`${r.rating} de 5 estrellas`}>
+          {'★'.repeat(r.rating)}
+        </div>
         <p class="mb-2 text-[13.5px] leading-normal" data-es={r.text.es}>{r.text.en}</p>
         <div class="font-bold text-xs text-tan">{r.name}</div>
       </div>
