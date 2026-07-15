@@ -1,5 +1,5 @@
 ---
-import { PHONE, PHONE_LABEL, ADDRESS, MAPS_URL, FACEBOOK_URL } from '../data/site';
+import { PHONE, PHONE_LABEL, ADDRESS, HOURS, MAPS_URL, FACEBOOK_URL } from '../data/site';
 import Button from './Button.astro';
 ---
 
@@ -9,8 +9,11 @@ import Button from './Button.astro';
   <div class="text-[13px] text-[#e3cfaf] mb-3">{ADDRESS}</div>
 
   <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-[13px] mb-4 [&_span:nth-child(odd)]:text-[#e3cfaf]">
-    <span data-es="Lun–Sáb">Mon–Sat</span><span>11:00 AM – 9:00 PM</span>
-    <span data-es="Domingo">Sunday</span><span>11:00 AM – 8:00 PM</span>
+    {HOURS.map((h) => (
+      <Fragment>
+        <span data-es={h.label.es}>{h.label.en}</span><span>{h.display}</span>
+      </Fragment>
+    ))}
   </div>
 
   <div class="flex flex-wrap gap-2">
@@ -21,5 +24,12 @@ import Button from './Button.astro';
 
   <div class="text-center text-[11px] text-[#c9a87a] mt-6 border-t border-[#7e5535] pt-4">
     © 2026 Casa Mezcal · Alpine, Wyoming
+  </div>
+
+  <div class="text-center text-[10px] text-[#c9a87a]/70 mt-2">
+    <span data-es="Sitio por">Site by </span>
+    <a href="https://victorromero.dev" target="_blank" rel="noopener" class="text-[#c9a87a]/70 underline hover:text-cream">
+      Victor
+    </a>
   </div>
 </footer>

@@ -1,0 +1,50 @@
+---
+// JSON-LD para resultados enriquecidos de Google (horario, dirección, teléfono, menú).
+// Todo sale de site.ts: no duplicar datos aquí.
+import {
+  BUSINESS_NAME,
+  PHONE,
+  ADDRESS_PARTS,
+  GEO,
+  HOURS,
+  MAPS_URL,
+  FACEBOOK_URL,
+} from '../data/site';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Restaurant',
+  name: BUSINESS_NAME,
+  description:
+    'Authentic family Mexican restaurant in Alpine, Wyoming. Fresh ingredients, family recipes. Call to order pickup.',
+  url: Astro.site?.href,
+  telephone: PHONE,
+  image: new URL('/interior.jpg', Astro.site).href,
+  servesCuisine: 'Mexican',
+  priceRange: '$$',
+  menu: new URL('/menu', Astro.site).href,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: ADDRESS_PARTS.street,
+    addressLocality: ADDRESS_PARTS.city,
+    addressRegion: ADDRESS_PARTS.state,
+    postalCode: ADDRESS_PARTS.zip,
+    addressCountry: ADDRESS_PARTS.country,
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: GEO.lat,
+    longitude: GEO.lng,
+  },
+  openingHoursSpecification: HOURS.map((h) => ({
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: h.dayOfWeek,
+    opens: h.opens,
+    closes: h.closes,
+  })),
+  hasMap: MAPS_URL,
+  sameAs: [FACEBOOK_URL],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
