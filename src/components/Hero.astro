@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import { PHONE } from '../data/site';
 import Button from './Button.astro';
+import comedor from '../assets/fotos/comedor.jpg';
 
 // Papel picado: posiciones (x, y, rotación) sobre la curva del hilo
 const flags = [
@@ -11,7 +13,14 @@ const flagColors = ['#D4622A', '#3E6B3F', '#E8A13C', '#3A5A8C'];
 ---
 
 <section class="relative">
-  <img src="/interior.jpg" alt="Interior de Casa Mezcal" class="block w-full h-[340px] object-cover md:h-[480px]" />
+  <Image
+    src={comedor}
+    alt="Comedor de Casa Mezcal"
+    widths={[640, 1000, 1600]}
+    sizes="100vw"
+    loading="eager"
+    class="block w-full h-[340px] object-cover md:h-[480px]"
+  />
   <div class="absolute inset-0 bg-linear-to-b from-[#2a180a]/15 to-[#2a180a]/[0.78]"></div>
 
   <svg class="absolute top-0 left-0 w-full h-auto md:max-h-[120px]" viewBox="0 0 390 64" preserveAspectRatio="xMidYMin meet" aria-hidden="true">

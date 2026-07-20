@@ -1,11 +1,43 @@
 ---
-// Agrega más fotos como <img> con las mismas clases (h-[140px] md:h-[200px]).
+import { Image } from 'astro:assets';
+import molcajeteMixto from '../assets/fotos/molcajete-mixto.jpg';
+import molcajeteMariscos from '../assets/fotos/molcajete-mariscos.jpg';
+import coctel from '../assets/fotos/coctel-camaron.jpg';
+import carneAsada from '../assets/fotos/carne-asada.jpg';
+import mojarra from '../assets/fotos/mojarra.jpg';
+import comedor2 from '../assets/fotos/comedor-2.jpg';
+import molcajeteChair from '../assets/fotos/molcajete-mixto-3.jpg';
+
+// 6 fotos de relleno + la destacada (molcajete-mixto).
+const photos = [
+  { img: molcajeteMariscos, alt: 'Molcajete de mariscos' },
+  { img: coctel, alt: 'Coctel de camarón' },
+  { img: carneAsada, alt: 'Carne asada con nopal' },
+  { img: mojarra, alt: 'Mojarra frita' },
+  { img: comedor2, alt: 'Comedor' },
+  { img: molcajeteChair, alt: 'Molcajete mixto' },
+];
+const cell = 'w-full h-[140px] object-cover rounded-[14px] md:h-[200px]';
 ---
 
 <section id="gallery" class="mx-auto max-w-[1100px] px-5 py-[26px] md:px-14 md:py-12">
   <h2 class="mb-3.5 text-[22px] text-brown md:text-[30px]" data-es="Galería">Gallery</h2>
   <div class="grid grid-cols-2 gap-2.5 md:grid-cols-4">
-    <img src="/interior.jpg" alt="Interior de Casa Mezcal" class="col-span-2 w-full h-[180px] object-cover rounded-[14px] md:h-[200px]" />
-    <img src="/logo.jpg" alt="Logo de Casa Mezcal" class="w-full h-[140px] object-cover rounded-[14px] md:h-[200px]" />
+    <Image
+      src={molcajeteMixto}
+      alt="Molcajete mixto de Casa Mezcal"
+      widths={[400, 800]}
+      sizes="(min-width: 900px) 50vw, 100vw"
+      class="col-span-2 w-full h-[180px] object-cover rounded-[14px] md:h-[200px]"
+    />
+    {photos.map((p) => (
+      <Image
+        src={p.img}
+        alt={p.alt}
+        widths={[300, 600]}
+        sizes="(min-width: 900px) 25vw, 50vw"
+        class={cell}
+      />
+    ))}
   </div>
 </section>
