@@ -1,4 +1,4 @@
-// Reseñas REALES del perfil de Google (capturadas 2026-07-15).
+// Reseñas REALES del perfil de Google (capturadas 2026-07-15, ampliadas 2026-07-20).
 // Se actualizan a mano: Maps es una SPA (no se puede leer automáticamente) y la
 // Places API prohíbe cachear reseñas más de 30 días.
 // Google muestra el texto autotraducido según el idioma del lector; aquí se
@@ -20,11 +20,27 @@ export const reviews: Review[] = [
     },
   },
   {
+    name: 'Mari Stewart',
+    rating: 5,
+    text: {
+      en: 'The food was really good! I will be going there again. Excited to have a nice little restaurant to go to in town. They have remodeled it on the inside and it looks very nice and clean.',
+      es: '¡La comida estuvo muy buena! Volveré. Me emociona tener un lugarcito lindo a dónde ir en el pueblo. Remodelaron el interior y se ve muy bonito y limpio.',
+    },
+  },
+  {
     name: 'Kate Freeman',
     rating: 5,
     text: {
       en: 'Cute place, great food and great service. What more can you ask for!',
       es: 'Un lugar encantador, muy buena comida y excelente servicio. ¡Qué más se puede pedir!',
+    },
+  },
+  {
+    name: 'Rodd Lilley',
+    rating: 5,
+    text: {
+      en: 'Great food, great outdoor seating area and great service. We will be back soon.',
+      es: 'Excelente comida, una muy buena área al aire libre y excelente servicio. Volveremos pronto.',
     },
   },
   {
