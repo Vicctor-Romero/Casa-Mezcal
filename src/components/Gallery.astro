@@ -1,21 +1,22 @@
 ---
 import { Image } from 'astro:assets';
+import Button from './Button.astro';
 import molcajeteMixto from '../assets/fotos/molcajete-mixto.jpg';
 import molcajeteMariscos from '../assets/fotos/molcajete-mariscos.jpg';
 import coctel from '../assets/fotos/coctel-camaron.jpg';
 import carneAsada from '../assets/fotos/carne-asada.jpg';
-import mojarra from '../assets/fotos/mojarra.jpg';
-import comedor2 from '../assets/fotos/comedor-2.jpg';
-import molcajeteChair from '../assets/fotos/molcajete-mixto-3.jpg';
+import salon from '../assets/gallery/salon.jpg';
+import mesaCasaMezcal from '../assets/gallery/mesa-casa-mezcal.jpg';
+import letrero from '../assets/gallery/letrero.jpg';
 
-// 6 fotos de relleno + la destacada (molcajete-mixto).
+// Adelanto (comida + ambiente) + la destacada. La galería completa vive en /galeria.
 const photos = [
-  { img: molcajeteMariscos, alt: 'Molcajete de mariscos' },
+  { img: salon, alt: 'Comedor de Casa Mezcal' },
   { img: coctel, alt: 'Coctel de camarón' },
+  { img: mesaCasaMezcal, alt: 'Mesa tallada Casa Mezcal' },
   { img: carneAsada, alt: 'Carne asada con nopal' },
-  { img: mojarra, alt: 'Mojarra frita' },
-  { img: comedor2, alt: 'Comedor' },
-  { img: molcajeteChair, alt: 'Molcajete mixto' },
+  { img: letrero, alt: 'Letrero de Casa Mezcal' },
+  { img: molcajeteMariscos, alt: 'Molcajete de mariscos' },
 ];
 const cell = 'w-full h-[140px] object-cover rounded-[14px] md:h-[200px]';
 ---
@@ -39,5 +40,8 @@ const cell = 'w-full h-[140px] object-cover rounded-[14px] md:h-[200px]';
         class={cell}
       />
     ))}
+  </div>
+  <div class="mt-4">
+    <Button href="/galeria" variant="dark" data-es="Ver galería completa">See full gallery</Button>
   </div>
 </section>

@@ -1,0 +1,141 @@
+---
+import { Image, getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import LangToggle from '../components/LangToggle.astro';
+import { ORDER_URL } from '../data/site';
+
+// Ambiente
+import letrero from '../assets/gallery/letrero.jpg';
+import salon from '../assets/gallery/salon.jpg';
+import mesaCasaMezcal from '../assets/gallery/mesa-casa-mezcal.jpg';
+import sillasCatrina from '../assets/gallery/sillas-catrina.jpg';
+import salonMezcal from '../assets/gallery/salon-mezcal.jpg';
+import salonCatrinas from '../assets/gallery/salon-catrinas.jpg';
+import mural from '../assets/gallery/mural.jpg';
+// Comida
+import molcajeteMixto from '../assets/fotos/molcajete-mixto.jpg';
+import molcajeteMariscos from '../assets/fotos/molcajete-mariscos.jpg';
+import coctel from '../assets/fotos/coctel-camaron.jpg';
+import carneAsada from '../assets/fotos/carne-asada.jpg';
+import mojarra from '../assets/fotos/mojarra.jpg';
+
+const photos = [
+  { img: letrero, alt: 'Letrero de Casa Mezcal' },
+  { img: salon, alt: 'Comedor de Casa Mezcal' },
+  { img: mesaCasaMezcal, alt: 'Mesa tallada Casa Mezcal' },
+  { img: sillasCatrina, alt: 'Sillas pintadas a mano estilo Catrina' },
+  { img: salonMezcal, alt: 'Interior del restaurante' },
+  { img: salonCatrinas, alt: 'Comedor con sillas Catrina' },
+  { img: mural, alt: 'Mural de un patio mexicano' },
+  { img: molcajeteMixto, alt: 'Molcajete mixto' },
+  { img: molcajeteMariscos, alt: 'Molcajete de mariscos' },
+  { img: coctel, alt: 'Coctel de camarón' },
+  { img: carneAsada, alt: 'Carne asada con nopal' },
+  { img: mojarra, alt: 'Mojarra frita' },
+];
+
+// Versión grande (webp) para el lightbox. No sobre-escala más allá de la fuente.
+const large = await Promise.all(
+  photos.map((p) => getImage({ src: p.img, width: 1400, format: 'webp' })),
+);
+---
+
+<Base
+  title="Gallery — Casa Mezcal · Alpine, WY"
+  description="Photos of Casa Mezcal — the dining room, the hand-painted Catrina chairs, and our dishes. Family Mexican restaurant in Alpine, Wyoming."
+>
+  <header
+    class="sticky top-0 z-10 flex items-center justify-between gap-4 bg-cream border-b border-border-warm px-[18px] py-3.5 md:px-10"
+  >
+    <a href="/" class="flex items-center gap-2.5">
+      <img src="/logo.jpg" alt="Casa Mezcal" class="w-10 h-10 rounded-full object-cover" />
+      <span class="font-display font-black text-[15px] tracking-[0.5px] text-brown-dark">CASA MEZCAL</span>
+    </a>
+    <div class="flex items-center gap-3">
+      <LangToggle />
+      <span class="hidden md:inline-block">
+        <Button href={ORDER_URL} target="_blank" rel="noopener" data-es="Ordenar en línea">Order Online</Button>
+      </span>
+      <a href="/" class="font-bold text-sm text-brown" data-es="← Inicio">← Home</a>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-[1100px] px-5 pt-6 pb-12 md:px-14 md:pt-8 md:pb-16">
+    <h1 class="mb-1 text-[30px] text-brown" data-es="Galería">Gallery</h1>
+    <p class="mb-6 text-[13px] text-muted" data-es="Toca una foto para ampliarla.">Tap a photo to enlarge.</p>
+
+    <div class="grid grid-cols-2 gap-2.5 md:grid-cols-3">
+      {photos.map((p, i) => (
+        <button
+          type="button"
+          class="lb-item block h-[160px] md:h-[220px] overflow-hidden rounded-[14px] cursor-pointer"
+          data-src={large[i].src}
+          data-alt={p.alt}
+          aria-label={`Ampliar: ${p.alt}`}
+        >
+          <Image
+            src={p.img}
+            alt={p.alt}
+            widths={[300, 500]}
+            sizes="(min-width: 900px) 33vw, 50vw"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </button>
+      ))}
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4"
+  >
+    <button id="lb-close" type="button" aria-label="Cerrar" class="absolute top-4 right-5 text-white/80 text-4xl leading-none hover:text-white">×</button>
+    <button id="lb-prev" type="button" aria-label="Anterior" class="absolute left-3 md:left-6 text-white/80 text-5xl leading-none hover:text-white px-2">‹</button>
+    <img id="lb-img" src="" alt="" class="max-w-[92vw] max-h-[86vh] object-contain rounded-lg" />
+    <button id="lb-next" type="button" aria-label="Siguiente" class="absolute right-3 md:right-6 text-white/80 text-5xl leading-none hover:text-white px-2">›</button>
+  </div>
+
+  <script>
+    const items = Array.from(document.querySelectorAll<HTMLElement>('.lb-item'));
+    const srcs = items.map((el) => el.dataset.src ?? '');
+    const alts = items.map((el) => el.dataset.alt ?? '');
+    const lb = document.getElementById('lightbox')!;
+    const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+    let idx = 0;
+
+    const show = () => {
+      lbImg.src = srcs[idx];
+      lbImg.alt = alts[idx];
+    };
+    const open = (i: number) => {
+      idx = i;
+      show();
+      lb.classList.remove('hidden');
+      lb.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+      lb.classList.add('hidden');
+      lb.classList.remove('flex');
+      document.body.style.overflow = '';
+    };
+    const step = (d: number) => {
+      idx = (idx + d + items.length) % items.length;
+      show();
+    };
+
+    items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+    document.getElementById('lb-close')!.addEventListener('click', close);
+    document.getElementById('lb-prev')!.addEventListener('click', (e) => { e.stopPropagation(); step(-1); });
+    document.getElementById('lb-next')!.addEventListener('click', (e) => { e.stopPropagation(); step(1); });
+    lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+    document.addEventListener('keydown', (e) => {
+      if (lb.classList.contains('hidden')) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+  </script>
+</Base>
