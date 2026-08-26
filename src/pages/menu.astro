@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { menu } from '../data/menu';
-import { PHONE, PHONE_LABEL } from '../data/site';
+import { ORDER_URL, PHONE, PHONE_LABEL } from '../data/site';
 import MenuItem from '../components/MenuItem.astro';
 import Button from '../components/Button.astro';
 import LangToggle from '../components/LangToggle.astro';
@@ -20,6 +20,9 @@ import LangToggle from '../components/LangToggle.astro';
     </a>
     <div class="flex items-center gap-3">
       <LangToggle />
+      <span class="hidden md:inline-block">
+        <Button href={ORDER_URL} target="_blank" rel="noopener" data-es="Ordenar en línea">Order Online</Button>
+      </span>
       <a href="/" class="font-bold text-sm text-brown" data-es="← Inicio">← Home</a>
     </div>
   </header>
@@ -59,6 +62,9 @@ import LangToggle from '../components/LangToggle.astro';
       </div>
     ))}
 
+    <Button href={ORDER_URL} target="_blank" rel="noopener" block class="mt-6 shadow-lg" data-es="Ordenar en línea">
+      Order Online
+    </Button>
     <Button href={`tel:${PHONE}`} variant="dark" block class="mt-2" data-es={`Llama para ordenar • ${PHONE_LABEL}`}>
       Call to order pickup • {PHONE_LABEL}
     </Button>

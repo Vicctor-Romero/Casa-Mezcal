@@ -37,6 +37,10 @@ export const HOURS = [
   },
 ];
 
+// Pedido en línea (Toast Online Ordering). El pedido cae directo al POS de Toast.
+export const ORDER_URL =
+  'https://order.toasttab.com/online/casa-mezcal-etna-170-u-s-hwy-89';
+
 export const MAPS_URL = 'https://maps.app.goo.gl/tVMkKjhGX5ctpsBa6';
 export const FACEBOOK_URL =
   'https://www.facebook.com/p/Casa-Mezcal-Alpine-WY-61591071793891/';

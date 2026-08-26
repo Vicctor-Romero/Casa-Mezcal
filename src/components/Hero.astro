@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { PHONE } from '../data/site';
+import { ORDER_URL, PHONE } from '../data/site';
 import Button from './Button.astro';
 import comedor from '../assets/fotos/comedor.jpg';
 
@@ -47,8 +47,17 @@ const flagColors = ['#D4622A', '#3E6B3F', '#E8A13C', '#3A5A8C'];
     <p class="mb-4 text-sm leading-normal text-[#ebdcc3] max-w-[480px] md:text-base" data-es="Ingredientes frescos, recetas de familia y una bienvenida cálida. Ven a probar por qué todo Alpine habla de nosotros.">
       Fresh ingredients, family recipes, and a warm welcome. Come taste why Alpine can’t stop talking about us.
     </p>
-    <div class="flex gap-2.5">
-      <Button href="#menu" data-es="Ver menú">View menu</Button>
+    <div class="flex flex-wrap gap-2.5">
+      <Button
+        href={ORDER_URL}
+        target="_blank"
+        rel="noopener"
+        class="w-full text-center shadow-lg md:w-auto md:text-[15px]"
+        data-es="Ordenar en línea"
+      >
+        Order Online
+      </Button>
+      <Button href="#menu" variant="ghost-light" data-es="Ver menú">View menu</Button>
       <Button href={`tel:${PHONE}`} variant="ghost-light" data-es="Llámanos">Call us</Button>
     </div>
   </div>

@@ -1,5 +1,5 @@
 ---
-import { PHONE } from '../data/site';
+import { ORDER_URL } from '../data/site';
 import Button from './Button.astro';
 import LangToggle from './LangToggle.astro';
 
@@ -33,7 +33,7 @@ const nav = [
   <div class="flex items-center gap-3">
     <LangToggle />
     <span class="hidden md:inline-block">
-      <Button href={`tel:${PHONE}`} data-es="Llámanos">Call us</Button>
+      <Button href={ORDER_URL} target="_blank" rel="noopener" data-es="Ordenar en línea">Order Online</Button>
     </span>
   </div>
 </header>
