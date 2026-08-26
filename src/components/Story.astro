@@ -1,0 +1,35 @@
+---
+import { Image } from 'astro:assets';
+import salon from '../assets/gallery/salon.jpg';
+---
+
+<section id="historia" class="mx-auto max-w-[1100px] px-5 py-[26px] md:px-14 md:py-12">
+  <div class="grid gap-5 md:grid-cols-2 md:gap-9 md:items-center">
+    <Image
+      src={salon}
+      alt="Comedor de Casa Mezcal"
+      widths={[400, 800]}
+      sizes="(min-width: 900px) 50vw, 100vw"
+      class="w-full h-[220px] md:h-[360px] object-cover rounded-2xl"
+    />
+    <div>
+      <h2 class="mb-3.5 text-[22px] text-brown md:text-[30px]" data-es="Nuestra historia">Our story</h2>
+      <p
+        class="text-sm md:text-[15px] leading-relaxed text-brown-dark/85"
+        data-es="Casa Mezcal es uno de los restaurantes más nuevos de Alpine, pero Simeón y Christina llevan años cocinando comida mexicana. Crearon el lugar que siempre quisieron: cálido, colorido y lleno de cultura mexicana, con una cocina donde todo se hace desde cero. De lo que más orgullosos están no es de un platillo. Es de cómo te tratan mientras estás aquí."
+      >
+        Casa Mezcal is one of the newest restaurants in Alpine — but Simeón and Christina have cooked
+        Mexican food for years. They built the place they always wanted: warm, colorful, and full of
+        Mexican culture, with a kitchen where everything is made from scratch. What they're proudest of
+        isn't a single dish.
+        It's how you're treated while you're here.
+      </p>
+      <p
+        class="mt-4 font-display font-black text-[17px] md:text-lg text-terracotta-dark"
+        data-es="Entra como visita, sal sintiéndote de la familia."
+      >
+        Come in as a guest, leave feeling like family.
+      </p>
+    </div>
+  </div>
+</section>
