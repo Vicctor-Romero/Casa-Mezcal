@@ -54,7 +54,7 @@ import LangToggle from '../components/LangToggle.astro';
             {sec.note && <p class="mb-3 text-[13px] text-muted" data-es={sec.note.es}>{sec.note.en}</p>}
             <div class="grid gap-1.5 md:grid-cols-2 md:gap-3.5">
               {sec.items.map((it) => (
-                <MenuItem name={it.name} price={it.price} priceLabel={it.priceLabel} desc={it.desc} />
+                <MenuItem {...it} />
               ))}
             </div>
           </section>

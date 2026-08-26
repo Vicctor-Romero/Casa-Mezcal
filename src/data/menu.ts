@@ -1,12 +1,18 @@
 // Menú completo de Casa Mezcal (transcrito del menú físico).
 // Fuente única: la usa el landing (destacados) y la página /menu (completo).
 // Para editar: cambia nombre/precio/desc aquí. Descripciones bilingües (en/es).
+import type { ImageMetadata } from 'astro';
+
+// Fotos por platillo (opcional). Agregar más conforme lleguen.
+import taquitos from '../assets/food/Taquitosdepollo.jpeg';
+import twoItemPlate from '../assets/food/Twoitemplate-chimichangaandchilerelleno.jpeg';
 
 export interface MenuItem {
   name: string;
   price?: number; // omitir si el precio va en priceLabel o no aplica
   priceLabel?: string; // para rangos/tamaños, ej. "S 9.99 · M 13.99 · Jumbo 19.99"
   desc?: { en: string; es: string };
+  image?: ImageMetadata; // foto del platillo; si existe, la tarjeta se vuelve expandible
 }
 
 export interface MenuSection {
@@ -95,7 +101,7 @@ export const menu: MenuGroup[] = [
         name: t('Appetizers', 'Entradas'),
         items: [
           { name: 'Loaded Nachos', price: 16.99, desc: t('Corn tortilla chips covered with beans and melted cheese, topped with onions, tomatoes, jalapeños, sour cream and guacamole.', 'Totopos con frijoles y queso derretido, cebolla, tomate, jalapeños, crema y guacamole.') },
-          { name: 'Chicken Taquitos', price: 15.99, desc: t('Deep fried tortilla filled with chicken and garnished with lettuce, tomatoes, sour cream and guacamole.', 'Taquitos dorados de pollo con lechuga, tomate, crema y guacamole.') },
+          { name: 'Chicken Taquitos', price: 15.99, image: taquitos, desc: t('Deep fried tortilla filled with chicken and garnished with lettuce, tomatoes, sour cream and guacamole.', 'Taquitos dorados de pollo con lechuga, tomate, crema y guacamole.') },
           { name: 'Cheese Dip', price: 5.99 },
           { name: 'Bean Dip', price: 4.99 },
           { name: 'Choriqueso', price: 6.99 },
@@ -210,7 +216,7 @@ export const menu: MenuGroup[] = [
         name: t('Combo Plates', 'Platos Combinados'),
         note: t('Served with rice and beans.', 'Servidos con arroz y frijoles.'),
         items: [
-          { name: 'Two Item Plate', price: 15.99, desc: t('Tamal, taco, tostada, chile relleno, chimichanga, burrito, enchilada.', 'Tamal, taco, tostada, chile relleno, chimichanga, burrito, enchilada.') },
+          { name: 'Two Item Plate', price: 15.99, image: twoItemPlate, desc: t('Tamal, taco, tostada, chile relleno, chimichanga, burrito, enchilada.', 'Tamal, taco, tostada, chile relleno, chimichanga, burrito, enchilada.') },
           { name: 'Three Item Plate', price: 17.99, desc: t('Tamal, taco, tostada, chile relleno, chimichanga, burrito, enchilada.', 'Tamal, taco, tostada, chile relleno, chimichanga, burrito, enchilada.') },
         ],
       },

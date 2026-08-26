@@ -12,7 +12,7 @@ import Button from './Button.astro';
   </p>
   <div class="grid gap-1.5 md:grid-cols-2 md:gap-3.5">
     {highlights.map((it) => (
-      <MenuItem name={it.name} price={it.price} priceLabel={it.priceLabel} desc={it.desc} />
+      <MenuItem {...it} />
     ))}
   </div>
   <div class="flex flex-wrap gap-2.5 mt-4">
