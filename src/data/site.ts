@@ -20,20 +20,28 @@ export const ADDRESS = `${ADDRESS_PARTS.street}, ${ADDRESS_PARTS.city}, ${ADDRES
 export const GEO = { lat: 43.1618725, lng: -111.0231683 };
 
 // Horarios confirmados. `display` es lo que se ve; opens/closes (24h) alimentan el schema.
+// Martes cerrado: para Google, un día cerrado se marca con opens/closes en '00:00'.
 export const HOURS = [
   {
-    label: { en: 'Mon–Sat', es: 'Lun–Sáb' },
-    display: '11:00 AM – 9:00 PM',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    label: { en: 'Mon, Wed–Sat', es: 'Lun, Mié–Sáb' },
+    display: { en: '11:00 AM – 9:00 PM', es: '11:00 AM – 9:00 PM' },
+    dayOfWeek: ['Monday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     opens: '11:00',
     closes: '21:00',
   },
   {
     label: { en: 'Sunday', es: 'Domingo' },
-    display: '11:00 AM – 8:00 PM',
+    display: { en: '11:00 AM – 8:00 PM', es: '11:00 AM – 8:00 PM' },
     dayOfWeek: ['Sunday'],
     opens: '11:00',
     closes: '20:00',
+  },
+  {
+    label: { en: 'Tuesday', es: 'Martes' },
+    display: { en: 'Closed', es: 'Cerrado' },
+    dayOfWeek: ['Tuesday'],
+    opens: '00:00',
+    closes: '00:00',
   },
 ];
 

@@ -11,7 +11,7 @@ import Button from './Button.astro';
   <div class="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-[13px] mb-4 [&_span:nth-child(odd)]:text-[#e3cfaf]">
     {HOURS.map((h) => (
       <Fragment>
-        <span data-es={h.label.es}>{h.label.en}</span><span>{h.display}</span>
+        <span data-es={h.label.es}>{h.label.en}</span><span data-es={h.display.es}>{h.display.en}</span>
       </Fragment>
     ))}
   </div>
