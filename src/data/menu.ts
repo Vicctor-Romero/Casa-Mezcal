@@ -6,6 +6,11 @@ import type { ImageMetadata } from 'astro';
 // Fotos por platillo (opcional). Agregar más conforme lleguen.
 import taquitos from '../assets/food/Taquitosdepollo.jpeg';
 import twoItemPlate from '../assets/food/Twoitemplate-chimichangaandchilerelleno.jpeg';
+import carneAsada from '../assets/food/Carne asada.jpeg';
+import polloAsado from '../assets/food/Pollo Asado.jpeg';
+import steakAzteca from '../assets/food/Steak Azteca.jpeg';
+import streetTacos from '../assets/food/Street tacos.jpeg';
+import enchiladaCrema from '../assets/food/Enchilada a la crema.jpeg';
 
 export interface MenuItem {
   name: string;
@@ -53,7 +58,6 @@ export const menu: MenuGroup[] = [
           { name: 'Chimichanga', price: 14.99, desc: t('Choice of chicken, ground beef or shredded beef. Topped with lettuce, tomato, sour cream and guacamole.', 'Pollo, res molida o deshebrada. Con lechuga, tomate, crema y guacamole.') },
           { name: 'Flautas (3)', price: 13.99, desc: t('Choice of chicken or shredded beef.', 'Pollo o res deshebrada.') },
           { name: 'Sopes (2)', price: 14.99, desc: t('Choice of carne asada, pollo asado or al pastor. Topped with lettuce, sour cream, cheese and salsa.', 'Carne asada, pollo asado o al pastor. Con lechuga, crema, queso y salsa.') },
-          { name: 'Chilaquiles Verdes', price: 14.99, desc: t('Two eggs any style, beans, sour cream, queso fresco and onions. Add carne asada for $5.99 more.', 'Dos huevos al gusto, frijoles, crema, queso fresco y cebolla. Carne asada +$5.99.') },
         ],
       },
       {
@@ -64,7 +68,7 @@ export const menu: MenuGroup[] = [
           { name: 'Mole Enchilada', price: 13.99, desc: t('Chicken sautéed in our traditional authentic mole sauce.', 'Pollo en nuestra auténtica salsa de mole.') },
           { name: 'Chipotle Enchilada', price: 13.99, desc: t('Chicken with chipotle cream sauce.', 'Pollo en salsa cremosa de chipotle.') },
           { name: 'Verde Enchilada', price: 13.99, desc: t('Pork chunk with green sauce.', 'Trozos de cerdo en salsa verde.') },
-          { name: 'Enchilada A La Crema', price: 13.99, desc: t('Chicken with cream sauce.', 'Pollo en salsa a la crema.') },
+          { name: 'Enchilada A La Crema', price: 13.99, image: enchiladaCrema, desc: t('Chicken with cream sauce.', 'Pollo en salsa a la crema.') },
           { name: 'Zuisa Enchilada', price: 13.99, desc: t('Shredded chicken with green sauce and sour cream.', 'Pollo deshebrado en salsa verde y crema.') },
           { name: 'Enchiladas Rojas', price: 13.99, desc: t('Choice of chicken, ground beef or shredded beef.', 'Pollo, res molida o deshebrada.') },
           { name: 'Seafood Enchilada', price: 14.99, desc: t('Shrimp with real crab meat cooked in butter and chopped sauce.', 'Camarón con carne de cangrejo en mantequilla y salsa picada.') },
@@ -137,7 +141,7 @@ export const menu: MenuGroup[] = [
           { name: 'Mole Enchilada', price: 16.99, desc: t('Chicken sautéed in our traditional authentic mole sauce.', 'Pollo en nuestra auténtica salsa de mole.') },
           { name: 'Chipotle Enchilada', price: 16.99, desc: t('Chicken with chipotle cream sauce.', 'Pollo en salsa cremosa de chipotle.') },
           { name: 'Verde Enchilada', price: 16.99, desc: t('Pork chunk with green sauce.', 'Trozos de cerdo en salsa verde.') },
-          { name: 'Enchilada A La Crema', price: 16.99, desc: t('Chicken with cream sauce.', 'Pollo en salsa a la crema.') },
+          { name: 'Enchilada A La Crema', price: 16.99, image: enchiladaCrema, desc: t('Chicken with cream sauce.', 'Pollo en salsa a la crema.') },
           { name: 'Zuisa Enchilada', price: 16.99, desc: t('Shredded chicken with green sauce and sour cream.', 'Pollo deshebrado en salsa verde y crema.') },
           { name: 'Enchiladas Rojas', price: 16.99, desc: t('Choice of chicken, ground beef or shredded beef.', 'Pollo, res molida o deshebrada.') },
           { name: 'Seafood Enchilada', price: 17.99, desc: t('Shrimp with real crab meat cooked in butter and chopped salsa.', 'Camarón con carne de cangrejo en mantequilla y salsa picada.') },
@@ -147,8 +151,8 @@ export const menu: MenuGroup[] = [
         id: 'seafood',
         name: t('Seafood', 'Mariscos'),
         items: [
-          { name: 'Camarones A La Crema', price: 20.99, desc: t('Prawns wrapped in bacon and fried. Served over a bed of red and green peppers and onions, topped with melted cheese.', 'Camarones envueltos en tocino y fritos, sobre pimientos rojos y verdes y cebolla, con queso derretido.') },
-          { name: 'Camarones Momia', price: 20.99, desc: t('Prawns, cooked with mushrooms and sautéed in a tasty sauce made with sour cream.', 'Camarones con champiñones en una rica salsa a la crema.') },
+          { name: 'Camarones A La Crema', price: 20.99, desc: t('Prawns, cooked with mushrooms and sautéed in a tasty sauce made with sour cream.', 'Camarones con champiñones en una rica salsa a la crema.') },
+          { name: 'Camarones Momia', price: 20.99, desc: t('Prawns wrapped in bacon and fried. Served over a bed of red and green peppers and onions, topped with melted cheese.', 'Camarones envueltos en tocino y fritos, sobre pimientos rojos y verdes y cebolla, con queso derretido.') },
           { name: 'Camarones Al Mojo De Ajo', price: 20.99, desc: t('Prawns and mushrooms cooked in butter and sautéed in garlic-onion juice.', 'Camarones y champiñones en mantequilla, ajo y cebolla.') },
           { name: 'Camarones A La Diabla', price: 20.99, desc: t('Prawns cooked with mushrooms sautéed in a spicy sauce.', 'Camarones con champiñones en salsa picante.') },
           { name: 'Camarones En Salsa Verde', price: 20.99, desc: t('Prawns cooked over charcoal and served with rice and beans, baby shrimp, avocado and green sauce.', 'Camarones al carbón con arroz, frijoles, camarón chico, aguacate y salsa verde.') },
@@ -166,9 +170,9 @@ export const menu: MenuGroup[] = [
         id: 'beef',
         name: t('Beef', 'Res'),
         items: [
-          { name: 'Carne Asada', price: 23.99, desc: t('Slices of skirt steak cooked over charcoal, served with guacamole.', 'Rebanadas de arrachera al carbón con guacamole.') },
+          { name: 'Carne Asada', price: 23.99, image: carneAsada, desc: t('Slices of skirt steak cooked over charcoal, served with guacamole.', 'Rebanadas de arrachera al carbón con guacamole.') },
           { name: 'Carnitas De Res', price: 20.99, desc: t('Flank steak strips with red and green peppers, onions and tomatoes.', 'Tiras de res con pimientos rojos y verdes, cebolla y tomate.') },
-          { name: 'Street Tacos (3)', price: 20.99, desc: t('Your choice of carne asada, al pastor, pollo asado or carnitas.', 'Carne asada, al pastor, pollo asado o carnitas.') },
+          { name: 'Street Tacos (3)', price: 20.99, image: streetTacos, desc: t('Your choice of carne asada, al pastor, pollo asado or carnitas.', 'Carne asada, al pastor, pollo asado o carnitas.') },
           { name: 'Milanesa De Res', price: 22.99, desc: t('Breaded skirt steak.', 'Milanesa de res empanizada.') },
           { name: 'Chuletas De Puerco', price: 20.99, desc: t('3 pork chops in green sauce.', '3 chuletas de puerco en salsa verde.') },
         ],
@@ -178,7 +182,7 @@ export const menu: MenuGroup[] = [
         name: t('Chicken', 'Pollo'),
         items: [
           { name: 'Milanesa De Pollo', price: 20.99, desc: t('Breaded chicken breast.', 'Pechuga de pollo empanizada.') },
-          { name: 'Pollo Asado', price: 19.99, desc: t('Chicken breast cooked over charcoal.', 'Pechuga de pollo al carbón.') },
+          { name: 'Pollo Asado', price: 19.99, image: polloAsado, desc: t('Chicken breast cooked over charcoal.', 'Pechuga de pollo al carbón.') },
           { name: 'Pollo A La Crema', price: 19.99, desc: t('Chicken breast with mushrooms sautéed in sour cream sauce.', 'Pechuga con champiñones en salsa a la crema.') },
           { name: 'Pollo Chipotle', price: 19.99, desc: t('Chicken breast covered with chipotle cream sauce.', 'Pechuga en salsa cremosa de chipotle.') },
           { name: 'Carnitas De Pollo', price: 19.99, desc: t('Chicken breast with peppers, onions and tomatoes.', 'Pechuga con pimientos, cebolla y tomate.') },
@@ -190,7 +194,7 @@ export const menu: MenuGroup[] = [
         id: 'steak',
         name: t('Steak', 'Cortes'),
         items: [
-          { name: 'Steak Azteca', price: 25.99, desc: t('12oz NY steak in a bed of jalapeños, peppers, onion and cactus. Comes with rice and beans.', 'NY steak de 12oz sobre jalapeños, pimientos, cebolla y nopal. Con arroz y frijoles.') },
+          { name: 'Steak Azteca', price: 25.99, image: steakAzteca, desc: t('12oz NY steak in a bed of jalapeños, peppers, onion and cactus. Comes with rice and beans.', 'NY steak de 12oz sobre jalapeños, pimientos, cebolla y nopal. Con arroz y frijoles.') },
           { name: '16oz T-bone Steak', price: 25.99, desc: t('Comes with rice and beans.', 'Con arroz y frijoles.') },
         ],
       },
@@ -227,7 +231,6 @@ export const menu: MenuGroup[] = [
           { name: 'Parrillada Cielo, Mar Y Tierra', price: 44.99, desc: t('Grilled steak and chicken served with your choice of shrimp in any style from our menu. Served with rice, beans, guacamole and tortillas.', 'Res y pollo a la parrilla con camarón al estilo que elijas. Con arroz, frijoles, guacamole y tortillas.') },
           { name: 'Molcajete', price: 44.99, desc: t('A sizzling traditional stone bowl filled with steak, chicken, shrimp, chorizo and cactus in a hot molcajete with roasted salsa. Served with rice, beans, guacamole and tortillas.', 'Molcajete caliente con res, pollo, camarón, chorizo y nopal en salsa asada. Con arroz, frijoles, guacamole y tortillas.') },
           { name: 'Fajitas For Two', price: 39.99, desc: t('Choose two from chicken, beef, or prawns, then we cook them in a red and green bell peppers and onions. Served with two plates of rice and beans, guacamole and sour cream.', 'Elige dos: pollo, res o camarón, con pimientos rojos y verdes y cebolla. Con dos órdenes de arroz y frijoles, guacamole y crema.') },
-          { name: 'Molcajete De Mariscos', price: 44.99, desc: t('A sizzling stone mortar filled with a medley of grilled seafood such as shrimp, fish, octopus and scallops, cooked in a spicy tomato-based sauce.', 'Molcajete de mariscos a la parrilla: camarón, pescado, pulpo y callo en salsa de tomate picante.') },
         ],
       },
       {
