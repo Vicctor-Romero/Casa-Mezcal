@@ -36,7 +36,7 @@ const schema = {
     latitude: GEO.lat,
     longitude: GEO.lng,
   },
-  openingHoursSpecification: HOURS.map((h) => ({
+  openingHoursSpecification: HOURS.filter((h) => h.opens).map((h) => ({
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: h.dayOfWeek,
     opens: h.opens,
